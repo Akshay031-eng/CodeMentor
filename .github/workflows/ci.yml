@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend:
+    name: Backend tests (Python, Java, C++, C judge + API)
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    defaults:
+      run:
+        working-directory: Backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: Backend/requirements.txt
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest tests -q
+        env:
+          TEST_REDIS_URL: redis://localhost:6379/15
+
+  frontend:
+    name: Frontend lint & build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: Frontend/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  docker:
+    name: Docker image (build + sandboxed judge smoke test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t codementor-api Backend
+
+      - name: Judge all languages as the sandbox user inside the image
+        run: |
+          docker run --rm \
+            -e SUPABASE_URL=https://ci-test.supabase.co \
+            -e SUPABASE_KEY=ci-test-key \
+            codementor-api python -c "
+          import code_runner as c
+          assert c.sandbox_identity(), 'sandbox user is not active'
+          solutions = {
+              'python': 'def two_sum(nums, target):\n    return [0, 1]\n',
+              'java': 'class Solution { public int[] twoSum(int[] nums, int target) { return new int[]{0, 1}; } }',
+              'cpp': 'class Solution { public: vector<int> twoSum(vector<int>& nums, int target) { return {0, 1}; } };',
+              'c': '#include <stdio.h>\nvoid twoSum(int nums[], int n, int target) { printf(\"[0,1]\"); }',
+          }
+          for language, code in solutions.items():
+              [result] = c.judge(1, code, language, ['nums=[2,7], target=9'])
+              assert result['kind'] == c.OK and c.compare_for_problem(1, language, result['output'], '[0,1]'), (language, result)
+              print(language, 'OK')
+          kill = 'import os\ndef two_sum(nums, target):\n    os.kill(os.getppid(), 9)\n'
+          [result] = c.judge(1, kill, 'python', ['nums=[2,7], target=9'])
+          assert 'PermissionError' in result['error'], result
+          print('sandbox cannot signal the server: OK')
+          "

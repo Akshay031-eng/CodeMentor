@@ -1,0 +1,16 @@
+# Secrets never go into the image - set them in the hosting dashboard.
+.env
+.env.*
+!.env.example
+
+# Local environments and caches
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Not needed at runtime
+tests/
+Dockerfile
+.dockerignore

@@ -1,0 +1,352 @@
+.leetcode-problems-page {
+    color: #f5f5f5;
+}
+
+.problems-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #8b8b95;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.problems-header h1 {
+    margin: 0;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1;
+    letter-spacing: -0.045em;
+}
+
+.problems-header p {
+    margin: 10px 0 0;
+    color: #8b8b95;
+    font-size: 12px;
+}
+
+.problems-count {
+    min-width: 90px;
+    padding: 12px 14px;
+    border: 1px solid #28282f;
+    border-radius: 10px;
+    background: #121217;
+    text-align: center;
+}
+
+.problems-count strong,
+.problems-count span {
+    display: block;
+}
+
+.problems-count strong {
+    font-size: 18px;
+}
+
+.problems-count span {
+    margin-top: 3px;
+    color: #777780;
+    font-size: 9px;
+}
+
+.problems-toolbar {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.search-box {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    border: 1px solid #2a2a32;
+    border-radius: 9px;
+    background: #101015;
+}
+
+.search-box > span {
+    color: #777780;
+    font-size: 15px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #f5f5f5;
+    font-size: 11px;
+}
+
+.search-box input::placeholder {
+    color: #66666f;
+}
+
+.clear-search {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #1b1b21;
+    color: #9a9aa4;
+    cursor: pointer;
+}
+
+.difficulty-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 3px;
+    border: 1px solid #27272e;
+    border-radius: 9px;
+    background: #101015;
+}
+
+.difficulty-tab {
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 7px;
+    background: transparent;
+    color: #777780;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.difficulty-tab:hover,
+.difficulty-tab.active {
+    background: #202027;
+    color: #ffffff;
+}
+
+.problem-table {
+    overflow: hidden;
+    border: 1px solid #28282f;
+    border-radius: 12px;
+    background: #0f0f14;
+}
+
+.problem-table-head {
+    display: grid;
+    grid-template-columns: 60px minmax(250px, 1fr) 120px 150px 40px;
+    gap: 14px;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-bottom: 1px solid #25252c;
+    color: #686871;
+    background: #121217;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.problem-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60px minmax(250px, 1fr) 120px 150px 40px;
+    gap: 14px;
+    align-items: center;
+    min-height: 70px;
+    padding: 0 18px;
+    border-bottom: 1px solid #222229;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+}
+
+.problem-row:last-child {
+    border-bottom: 0;
+}
+
+.problem-row:hover {
+    background: #15151b;
+}
+
+.problem-number {
+    color: #6b6b74;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.problem-title-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.problem-title-cell strong {
+    overflow: hidden;
+    color: #eeeeef;
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.problem-title-cell small {
+    color: #5f5f68;
+    font-size: 9px;
+}
+
+.difficulty-text {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.difficulty-text.easy {
+    color: #65d69c;
+}
+
+.difficulty-text.medium {
+    color: #d9aa5f;
+}
+
+.difficulty-text.hard {
+    color: #e77f89;
+}
+
+.topic-text {
+    overflow: hidden;
+    color: #81818b;
+    font-size: 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.problem-row-arrow {
+    color: #66666f;
+    font-size: 20px;
+    text-align: right;
+    transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.problem-row:hover .problem-row-arrow {
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+.empty-problems,
+.page-state {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 30px;
+    text-align: center;
+}
+
+.empty-problems strong,
+.page-state h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.empty-problems span,
+.page-state p {
+    margin: 0;
+    color: #73737d;
+    font-size: 10px;
+}
+
+.retry-button {
+    margin-top: 8px;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111114;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.state-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 3px;
+    border: 1px solid #393943;
+    border-radius: 50%;
+    background: #18181e;
+    color: #f08a95;
+    font-weight: 800;
+}
+
+.state-spinner {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 7px;
+    border: 2px solid #292930;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: problem-spin 0.8s linear infinite;
+}
+
+@keyframes problem-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 900px) {
+    .problems-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-table-head,
+    .problem-row {
+        grid-template-columns: 42px minmax(190px, 1fr) 90px 30px;
+    }
+
+    .problem-table-head span:nth-child(4),
+    .topic-text {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    .problems-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .problems-count {
+        min-width: 78px;
+    }
+
+    .problem-table-head {
+        display: none;
+    }
+
+    .problem-row {
+        grid-template-columns: 34px minmax(0, 1fr) 22px;
+        gap: 10px;
+        min-height: 66px;
+        padding: 0 12px;
+    }
+
+    .difficulty-text {
+        display: none;
+    }
+
+    .problem-row-arrow {
+        font-size: 18px;
+    }
+}
