@@ -1,10 +1,10 @@
 # CodeMentor — AI Coding Practice Platform
 
-[![CI](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/actions/workflows/ci.yml)
+[![CI](https://github.com/Akshay031-eng/CodeMentor/actions/workflows/ci.yml/badge.svg)](https://github.com/Akshay031-eng/CodeMentor/actions/workflows/ci.yml)
 
 A LeetCode-style practice platform with a **multi-language code judge** (Python, Java, C++, C) and a **RAG-powered AI mentor** that reviews your actual code, explains failing test cases and gives hints without spoiling the answer.
 
-**Live demo:** https://YOUR-APP.vercel.app — click **"Try the demo account"**, no sign-up needed.
+**Live demo:** https://code-mentor-hazel.vercel.app — click **"Try the demo account"**, no sign-up needed.
 <sub>The backend runs on a free plan and sleeps when idle; the first request can take up to a minute.</sub>
 
 ![Code editor with an accepted submission](docs/screenshots/editor.png)
